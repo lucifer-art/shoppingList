@@ -1,4 +1,3 @@
-import { RecipeService } from './../../recipes.service';
 import { Recipe } from './../../recipes.modal';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -11,15 +10,12 @@ export class RecipeItemComponent implements OnInit {
 
   @Input()
   recipe!: Recipe;
+  @Input() index!: number;
   
-  constructor(private recipeService:RecipeService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSelected(){
-    console.log("adsdasd");
-    this.recipeService.recipeSelected.emit(this.recipe);
-  }
 
 }
