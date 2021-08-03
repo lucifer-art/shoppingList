@@ -10,25 +10,32 @@ export class RecipeService {
     recipeChanged = new Subject<Recipe[]>();
 
     recipeSelected = new Subject<Recipe>();
-    private recipes:Recipe[] = [
-        new Recipe('Burger',
-        'Test value 1',
-        'https://picturetherecipe.com/wp-content/uploads/2018/06/Chicken-Cutlets-by-PictureTheRecipe-Featured-395x500.jpg',
-        [
-            new Ingredient('Meat',1),
-            new Ingredient('French Fries',1),
-        ]),
-        new Recipe('Maharaja Burger',
-        'Test description 2',
-        'https://picturetherecipe.com/wp-content/uploads/2018/06/Chicken-Cutlets-by-PictureTheRecipe-Featured-395x500.jpg',
-        [
-            new Ingredient('Meat',1),
-            new Ingredient('French Fries',1),
-            new Ingredient('Pepsi',1),
-        ])
-      ];
+    // private recipes:Recipe[] = [
+    //     new Recipe('Burger',
+    //     'Test value 1',
+    //     'https://picturetherecipe.com/wp-content/uploads/2018/06/Chicken-Cutlets-by-PictureTheRecipe-Featured-395x500.jpg',
+    //     [
+    //         new Ingredient('Meat',1),
+    //         new Ingredient('French Fries',1),
+    //     ]),
+    //     new Recipe('Maharaja Burger',
+    //     'Test description 2',
+    //     'https://picturetherecipe.com/wp-content/uploads/2018/06/Chicken-Cutlets-by-PictureTheRecipe-Featured-395x500.jpg',
+    //     [
+    //         new Ingredient('Meat',1),
+    //         new Ingredient('French Fries',1),
+    //         new Ingredient('Pepsi',1),
+    //     ])
+    //   ];
+
+    private recipes: Recipe[] = [];
 
     constructor(private slService: ShoppingListService) {}
+
+    setRecipes(recipe:Recipe[]) {
+        this.recipes = recipe;
+        this.recipeChanged.next(this.recipes.slice());
+    }
     getRecipes(){
         return this.recipes.slice();
     }
